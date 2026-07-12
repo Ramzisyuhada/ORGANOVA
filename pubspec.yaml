@@ -38,7 +38,7 @@ dependencies:
   flutter_animate: ^4.5.0
   google_fonts: ^6.2.1
   lottie: ^3.1.0
-  syncfusion_flutter_pdfviewer: ^24.1.41
+  syncfusion_flutter_pdfviewer: ^33.2.15
   video_player: ^2.8.2
   animations: ^2.0.11
   supabase_flutter: ^2.0.0
