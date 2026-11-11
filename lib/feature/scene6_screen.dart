@@ -4,6 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:organova/core/widgets/ai_evaluation_sheet.dart';
 import 'package:organova/feature/scene7_screen.dart';
 import 'package:organova/service/simulation_ai_service.dart';
 import 'package:organova/statet/simulation_state.dart';
@@ -82,12 +83,21 @@ class _Scene6ScreenState extends State<Scene6Screen> {
   }
 
   void showResult() {
-    showDialog(
-      context: context,
-      builder: (_) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: _resultCard(),
-      ),
+    if (result == null) return;
+    AIEvaluationSheet.show(
+      context,
+      title: "Evaluasi AI - Crisis Simulation",
+      subtitle: "Dampak Keputusan Strategis Krisis",
+      evaluationText: result!["analysis"]?.toString(),
+      metrics: {
+        "Team Trust": result!["trust"],
+        "Productivity": result!["productivity"],
+        "Resistance Level": result!["resistance"],
+      },
+      onContinue: () {
+        Navigator.pop(context);
+        _goToMateri();
+      },
     );
   }
 
@@ -96,7 +106,6 @@ class _Scene6ScreenState extends State<Scene6Screen> {
     return Scaffold(
       body: Stack(
         children: [
-
           /// BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -116,11 +125,7 @@ class _Scene6ScreenState extends State<Scene6Screen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  LinearProgressIndicator(
-                    value: 0.85,
-                    color: Colors.red,
-                  ),
+                  LinearProgressIndicator(value: 0.85, color: Colors.red),
 
                   const SizedBox(height: 20),
 
@@ -128,9 +133,7 @@ class _Scene6ScreenState extends State<Scene6Screen> {
 
                   const SizedBox(height: 20),
 
-                  _glass(
-                    child: Text(crisis),
-                  ),
+                  _glass(child: Text(crisis)),
 
                   const SizedBox(height: 20),
 
@@ -138,10 +141,7 @@ class _Scene6ScreenState extends State<Scene6Screen> {
                   ...List.generate(options.length, (i) {
                     return GestureDetector(
                       onTap: () => selectOption(i),
-                      child: _optionCard(
-                        text: options[i],
-                        indexOption: i,
-                      ),
+                      child: _optionCard(text: options[i], indexOption: i),
                     );
                   }),
 
@@ -168,10 +168,13 @@ class _Scene6ScreenState extends State<Scene6Screen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
-            Text("Dampak Keputusan",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold, fontSize: 18)),
+            Text(
+              "Dampak Keputusan",
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
 
             const SizedBox(height: 16),
 
@@ -184,25 +187,18 @@ class _Scene6ScreenState extends State<Scene6Screen> {
 
             const SizedBox(height: 10),
 
-            Text(result!["analysis"],
-                textAlign: TextAlign.center),
+            Text(result!["analysis"], textAlign: TextAlign.center),
 
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: _goToMateri,
-              child: const Text("Lanjut"),
-            )
+            ElevatedButton(onPressed: _goToMateri, child: const Text("Lanjut")),
           ],
         ),
       ),
     );
   }
 
-  Widget _optionCard({
-    required String text,
-    required int indexOption,
-  }) {
+  Widget _optionCard({required String text, required int indexOption}) {
     bool isSelected = indexOption == selected;
 
     return Container(
@@ -210,8 +206,7 @@ class _Scene6ScreenState extends State<Scene6Screen> {
       child: _glass(
         child: Row(
           children: [
-            Icon(Icons.flash_on,
-                color: isSelected ? Colors.red : Colors.grey),
+            Icon(Icons.flash_on, color: isSelected ? Colors.red : Colors.grey),
             const SizedBox(width: 10),
             Expanded(child: Text(text)),
           ],
@@ -225,10 +220,7 @@ class _Scene6ScreenState extends State<Scene6Screen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title),
-        LinearProgressIndicator(
-          value: value / 100,
-          color: color,
-        ),
+        LinearProgressIndicator(value: value / 100, color: color),
       ],
     );
   }
@@ -249,9 +241,10 @@ class _Scene6ScreenState extends State<Scene6Screen> {
       children: [
         const Icon(Icons.warning, color: Colors.red),
         const SizedBox(width: 10),
-        Text("Crisis Simulation",
-            style: GoogleFonts.poppins(
-                fontWeight: FontWeight.bold, fontSize: 16)),
+        Text(
+          "Crisis Simulation",
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
       ],
     );
   }
@@ -262,10 +255,7 @@ class _Scene6ScreenState extends State<Scene6Screen> {
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const Scene7Screen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );

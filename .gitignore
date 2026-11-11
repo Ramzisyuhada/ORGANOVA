@@ -43,3 +43,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Local secrets passed with --dart-define-from-file (never commit)
+dart_defines.json
+
+# Word lock files
+~$*

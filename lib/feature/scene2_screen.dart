@@ -42,8 +42,6 @@ class _Scene2ScreenState extends State<Scene2Screen> {
       final json = jsonDecode(result);
       final state = SimulationState();
 
-      state.orgName = orgName;
-      state.orgData = data;
       orgName = json["name"] ?? "Organisasi";
 
       data = {
@@ -52,6 +50,10 @@ class _Scene2ScreenState extends State<Scene2Screen> {
         "Pengalaman": json["experience"],
         "Deadline": json["deadline_pressure"],
       };
+
+      // Save after the values are filled so later scenes get the real profile.
+      state.orgName = orgName;
+      state.orgData = data;
 
       fullText =
           "Bayangkan kamu adalah pemimpin di $orgName.\n\n"
@@ -63,7 +65,6 @@ class _Scene2ScreenState extends State<Scene2Screen> {
       });
 
       startTyping();
-
     } catch (e) {
       fullText = "Gagal memuat data AI.";
       setState(() => isLoading = false);
@@ -105,7 +106,6 @@ class _Scene2ScreenState extends State<Scene2Screen> {
               child: ListView(
                 padding: const EdgeInsets.all(20),
                 children: [
-
                   /// HEADER
                   _header(),
 
@@ -135,7 +135,8 @@ class _Scene2ScreenState extends State<Scene2Screen> {
                                 child: Text(
                                   e.key,
                                   style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500),
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 10),
@@ -174,30 +175,28 @@ class _Scene2ScreenState extends State<Scene2Screen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("ORGANIZATION PROFILE",
-            style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
+        Text(
+          "ORGANIZATION PROFILE",
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 6),
         Text(
           orgName,
-          style: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ],
     );
   }
+
   void _goToMateri() {
-     Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (_) => Scene3Screen(
-        orgData: data,
-        orgName: orgName,
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => Scene3Screen(orgData: data, orgName: orgName),
       ),
-    ),
-  );
+    );
   }
+
   /// GLASS
   Widget _glass({required Widget child}) {
     return ClipRRect(

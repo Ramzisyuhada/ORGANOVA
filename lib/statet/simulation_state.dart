@@ -22,16 +22,19 @@ class SimulationState {
   /// =========================
   double controlLevel = 0;
   Map<String, dynamic>? continuumResult;
+
   /// =========================
   /// 🔥 SCENE 5
   /// =========================
   Map<String, String> teamDecision = {};
   Map<String, dynamic>? teamResult;
+
   /// =========================
   /// 🔥 SCENE 6
   /// =========================
-String crisisStrategy = "";
-Map<String, dynamic>? crisisResult;
+  String crisisStrategy = "";
+  Map<String, dynamic>? crisisResult;
+
   /// =========================
   /// 🔥 RESET (optional)
   /// =========================

@@ -4,6 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:animations/animations.dart';
+import 'package:organova/core/theme/app_theme.dart';
+import 'package:organova/core/widgets/organova_logo.dart';
 import 'package:organova/feature/about_screen.dart';
 import 'package:organova/feature/intro_screen.dart';
 import 'package:organova/feature/materi_screen.dart';
@@ -44,10 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const IntroScreen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );
@@ -59,48 +58,41 @@ class _HomeScreenState extends State<HomeScreen>
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const MateriScreen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );
   }
- void _goToAbout() {
+
+  void _goToAbout() {
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const AboutScreen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );
   }
-   void _goToQuiz() {
+
+  void _goToQuiz() {
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const QuizScreen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-
           /// 🌈 BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -140,31 +132,44 @@ class _HomeScreenState extends State<HomeScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  /// HEADER
+                  /// HEADER LOGO & STATUS
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Level 1",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                      const OrganovaLogo(iconSize: 40, isHorizontal: true),
+                      _glass(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 8,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.stars_rounded,
+                                color: Colors.amber,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                "120 XP",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 13,
+                                  color: AppColors.textDark,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      _glass(
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 6),
-                          child: Text("⭐ 120 XP"),
-                        ),
-                      )
                     ],
                   ).animate().fadeIn().slideY(begin: -0.3),
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 22),
 
-                  /// HERO
+                  /// HERO CARD
                   _glass(
                     padding: const EdgeInsets.all(20),
                     child: Row(
@@ -174,31 +179,56 @@ class _HomeScreenState extends State<HomeScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Stevi",
+                                "Selamat Datang!",
                                 style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 22,
+                                  color: AppColors.textDark,
+                                  height: 1.2,
                                 ),
                               ),
-                              const SizedBox(height: 6),
-                              const Text(
-                                "Belajar HR dengan simulasi cerdas",
-                                style: TextStyle(color: Colors.black54),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Simulasi Kepemimpinan & Pengambilan Keputusan Organisasi Berbasis AI",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 13,
+                                  height: 1.5,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.textDarkSecondary,
+                                ),
+                              ),
+                              const SizedBox(height: 14),
+                              // Feature chips
+                              Wrap(
+                                spacing: 6,
+                                children: [
+                                  _chip(
+                                    "AI-Powered",
+                                    Icons.auto_awesome,
+                                    const Color(0xFF6366F1),
+                                  ),
+                                  _chip(
+                                    "Interaktif",
+                                    Icons.touch_app,
+                                    const Color(0xFF0EA5E9),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
+                        const SizedBox(width: 12),
                         SizedBox(
-                          height: 80,
+                          height: 88,
                           child: Lottie.asset("assets/ai.json"),
-                        )
+                        ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.3),
+                  ).animate().fadeIn(delay: 150.ms).slideY(begin: 0.2),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 22),
 
-                  /// 🚀 BUTTON SIMULASI
+                  /// 🚀 CTA BUTTON SIMULASI
                   GestureDetector(
                     onTapDown: (_) => setState(() => buttonScale = 0.95),
                     onTapUp: (_) {
@@ -211,46 +241,69 @@ class _HomeScreenState extends State<HomeScreen>
                       duration: const Duration(milliseconds: 120),
                       child: Container(
                         width: double.infinity,
-                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        height: 58,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           gradient: const LinearGradient(
-                            colors: [
-                              Color(0xFF4A6CF7),
-                              Color(0xFF7B8CFF),
-                            ],
+                            colors: [Color(0xFF4A6CF7), Color(0xFF7B8CFF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blue.withOpacity(0.3),
-                              blurRadius: 12,
+                              color: const Color(0xFF4A6CF7).withOpacity(0.4),
+                              blurRadius: 16,
                               offset: const Offset(0, 6),
-                            )
+                            ),
                           ],
                         ),
-                        child: const Center(
-                          child: Text(
-                            "MULAI SIMULASI",
-                            style: TextStyle(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.play_circle_fill,
+                              color: Colors.white,
+                              size: 22,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              "MULAI SIMULASI",
+                              style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                                letterSpacing: 1.0,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ).animate().fadeIn(delay: 400.ms).scale(),
+                  ).animate().fadeIn(delay: 300.ms).scale(),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 32),
 
-                  Text(
-                    "Menu Belajar",
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                  /// SECTION HEADING
+                  Row(
+                    children: [
+                      Text(
+                        "Menu Belajar",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: AppColors.textDark,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        height: 1,
+                        width: 40,
+                        color: AppColors.brandIndigo.withOpacity(0.3),
+                      ),
+                    ],
                   ),
 
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 14),
 
                   /// 🎮 MENU GRID
                   GridView.count(
@@ -259,15 +312,62 @@ class _HomeScreenState extends State<HomeScreen>
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
-                    childAspectRatio: 1.1,
+                    childAspectRatio: 1.15,
                     children: [
-                      _menu("Materi", Icons.menu_book, Colors.blue, _goToMateri),
-                      _menu("Kuis", Icons.quiz, Colors.orange,_goToQuiz ),
-                      _menu("Tentang", Icons.info, Colors.purple, _goToAbout),
+                      _menu(
+                        "Materi",
+                        Icons.menu_book_rounded,
+                        const Color(0xFF3B82F6),
+                        "Pelajari teori kepemimpinan",
+                        _goToMateri,
+                      ),
+                      _menu(
+                        "Kuis",
+                        Icons.quiz_rounded,
+                        const Color(0xFFF59E0B),
+                        "Uji pemahaman Anda",
+                        _goToQuiz,
+                      ),
+                      _menu(
+                        "Tentang",
+                        Icons.info_rounded,
+                        const Color(0xFF8B5CF6),
+                        "Tentang Organova",
+                        _goToAbout,
+                      ),
                     ],
                   ),
+
+                  const SizedBox(height: 10),
                 ],
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 🏷️ CHIP
+  Widget _chip(String label, IconData icon, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withOpacity(0.3), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 12, color: color),
+          const SizedBox(width: 4),
+          Text(
+            label,
+            style: GoogleFonts.poppins(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: color,
             ),
           ),
         ],
@@ -286,7 +386,7 @@ class _HomeScreenState extends State<HomeScreen>
         decoration: BoxDecoration(
           gradient: RadialGradient(
             colors: [
-              Colors.white.withOpacity(0.25),
+              const Color(0xFF4A6CF7).withOpacity(0.12),
               Colors.transparent,
             ],
           ),
@@ -305,9 +405,9 @@ class _HomeScreenState extends State<HomeScreen>
         child: Container(
           padding: padding ?? const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
+            color: Colors.white.withOpacity(0.3),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: Colors.white.withOpacity(0.4)),
+            border: Border.all(color: Colors.white.withOpacity(0.5), width: 1),
           ),
           child: child,
         ),
@@ -315,21 +415,50 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  /// 🎯 MENU CARD (FIX NAVIGASI)
+  /// 🎯 MENU CARD
   Widget _menu(
-      String title, IconData icon, Color color, VoidCallback onTap) {
+    String title,
+    IconData icon,
+    Color color,
+    String subtitle,
+    VoidCallback onTap,
+  ) {
     return _PressableCard(
       child: GestureDetector(
         onTap: onTap,
         child: _glass(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(18),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, color: color),
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(icon, color: color, size: 22),
+              ),
               const SizedBox(height: 10),
-              Text(title,
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
+              Text(
+                title,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: AppColors.textDark,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                subtitle,
+                style: GoogleFonts.poppins(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.textDarkMuted,
+                  height: 1.3,
+                ),
+              ),
             ],
           ),
         ),

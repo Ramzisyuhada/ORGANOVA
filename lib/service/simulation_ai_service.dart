@@ -9,8 +9,8 @@ class SimulationAIService {
   /// =========================
   /// 🔥 SCENE 2
   /// =========================
-Future<String> generateOrganization() async {
-  final prompt = """
+  Future<String> generateOrganization() async {
+    final prompt = """
 
 Anda adalah AI pembuat simulasi organisasi.
 
@@ -59,17 +59,18 @@ ATURAN:
 - gunakan bahasa natural (tidak kaku)
 """;
 
-  return await mistral.generate(prompt);
-}
+    return await mistral.generate(prompt);
+  }
+
   /// =========================
   /// 🔥 SCENE 3
   /// =========================
   Future<String> analyzeLikert({
-  required String userChoice,
-  required Map<String, String> orgData,
-}) async {
-
-   final prompt = """
+    required String userChoice,
+    required Map<String, String> orgData,
+  }) async {
+    final prompt =
+        """
 
 Anda adalah AI analis kepemimpinan (Model Likert).
 
@@ -107,20 +108,18 @@ ATURAN:
 - Bahasa natural
 """;
 
-
-
-  return await mistral.generate(prompt);
-
-}
+    return await mistral.generate(prompt);
+  }
 
   /// =========================
   /// 🔥 SCENE 4
   /// =========================
-Future<String> analyzeContinuum({
-  required double control,
-  required Map<String, String> orgData,
-}) async {
-  final prompt = """
+  Future<String> analyzeContinuum({
+    required double control,
+    required Map<String, String> orgData,
+  }) async {
+    final prompt =
+        """
 
 Anda adalah AI simulasi kepemimpinan.
 
@@ -150,19 +149,19 @@ ATURAN:
 - Semua value HARUS 1 baris (tidak boleh enter)
 - Maksimal 20 kata per field
 """;
-  return await mistral.generate(prompt);
-}
+    return await mistral.generate(prompt);
+  }
 
   /// =========================
   /// 🔥 SCENE 5
   /// =========================
   Future<String> analyzeTeam({
-  required Map<String, String> teamDecision,
-  required Map<String, String> orgData,
-  required double control,
-}) async {
-
-  final prompt = """
+    required Map<String, String> teamDecision,
+    required Map<String, String> orgData,
+    required double control,
+  }) async {
+    final prompt =
+        """
 
 Anda adalah AI analis kepemimpinan (Hersey-Blanchard).
 
@@ -202,20 +201,20 @@ ATURAN:
 - bahasa sederhana
 """;
 
-  return await mistral.generate(prompt);
-}
+    return await mistral.generate(prompt);
+  }
 
   /// =========================
   /// 🔥 SCENE 6
   /// =========================
   Future<String> analyzeCrisis({
-  required String strategy,
-  required Map<String, String> orgData,
-  required double control,
-  required Map<String, String> teamDecision,
-}) async {
-
-  final prompt = """
+    required String strategy,
+    required Map<String, String> orgData,
+    required double control,
+    required Map<String, String> teamDecision,
+  }) async {
+    final prompt =
+        """
 
 Anda adalah AI simulasi krisis organisasi.
 
@@ -257,14 +256,15 @@ ATURAN:
 - bahasa natural
 """;
 
-  return await mistral.generate(prompt);
-}
+    return await mistral.generate(prompt);
+  }
 
   /// =========================
   /// 🔥 SCENE 7
   /// =========================
- Future<String> generateDashboard(String summary) async {
-  final prompt = """
+  Future<String> generateDashboard(String summary) async {
+    final prompt =
+        """
 
 Anda adalah AI evaluator organisasi.
 
@@ -292,14 +292,15 @@ OUTPUT JSON:
 }
 """;
 
-  return await mistral.generate(prompt);
-}
+    return await mistral.generate(prompt);
+  }
 
   /// =========================
   /// 🔥 SCENE 8
   /// =========================
   Future<String> generateCoaching(String summary) async {
-  final prompt = """
+    final prompt =
+        """
 
 Anda adalah AI coach kepemimpinan.
 
@@ -325,6 +326,6 @@ Fokus langsung ke inti.
 
 """;
 
-  return await mistral.generate(prompt);
-}
+    return await mistral.generate(prompt);
+  }
 }

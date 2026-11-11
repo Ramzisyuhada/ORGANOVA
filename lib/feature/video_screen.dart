@@ -12,11 +12,7 @@ class VideoPlayerScreen extends StatefulWidget {
   final String file;
   final String? title;
 
-  const VideoPlayerScreen({
-    super.key,
-    required this.file,
-    this.title,
-  });
+  const VideoPlayerScreen({super.key, required this.file, this.title});
 
   @override
   State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
@@ -55,15 +51,18 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         ? VideoPlayerController.networkUrl(Uri.parse(widget.file))
         : VideoPlayerController.asset(widget.file);
 
-    _controller!.initialize().then((_) {
-      if (!mounted) return;
-      setState(() {});
-      _controller!.play();
-      _startHideTimer();
-    }).catchError((_) {
-      if (!mounted) return;
-      setState(() => _isInitError = true);
-    });
+    _controller!
+        .initialize()
+        .then((_) {
+          if (!mounted) return;
+          setState(() {});
+          _controller!.play();
+          _startHideTimer();
+        })
+        .catchError((_) {
+          if (!mounted) return;
+          setState(() => _isInitError = true);
+        });
 
     _controller!.addListener(() {
       if (mounted) setState(() {});
@@ -166,8 +165,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           child: _isInitError
               ? _errorState()
               : _controller?.value.isInitialized == true
-                  ? _videoBody()
-                  : const CircularProgressIndicator(color: Colors.indigoAccent),
+              ? _videoBody()
+              : const CircularProgressIndicator(color: Colors.indigoAccent),
         ),
       ),
     );
@@ -291,9 +290,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                               const Spacer(),
                               IconButton(
                                 icon: Icon(
-                                  _isMuted
-                                      ? Icons.volume_off
-                                      : Icons.volume_up,
+                                  _isMuted ? Icons.volume_off : Icons.volume_up,
                                   color: Colors.white,
                                   size: 20,
                                 ),

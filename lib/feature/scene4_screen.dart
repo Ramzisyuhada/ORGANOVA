@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:organova/core/widgets/ai_evaluation_sheet.dart';
 import 'package:organova/feature/scene5_screen.dart';
 import 'package:organova/service/simulation_ai_service.dart';
 import 'package:organova/statet/simulation_state.dart';
@@ -68,7 +69,6 @@ class _Scene4ScreenState extends State<Scene4Screen> {
 
       /// 🔥 SAVE KE GLOBAL STATE
       state.continuumResult = decoded;
-
     } catch (e) {
       debugPrint("AI ERROR: $e");
     }
@@ -103,7 +103,6 @@ class _Scene4ScreenState extends State<Scene4Screen> {
     return Scaffold(
       body: Stack(
         children: [
-
           /// BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -123,7 +122,6 @@ class _Scene4ScreenState extends State<Scene4Screen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   LinearProgressIndicator(
                     value: 0.5,
                     color: const Color(0xFF4A6CF7),
@@ -199,7 +197,8 @@ class _Scene4ScreenState extends State<Scene4Screen> {
                       if (result == null) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                              content: Text("Gagal analisis, coba lagi")),
+                            content: Text("Gagal analisis, coba lagi"),
+                          ),
                         );
                         return;
                       }
@@ -215,10 +214,7 @@ class _Scene4ScreenState extends State<Scene4Screen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         gradient: LinearGradient(
-                          colors: [
-                            getColor(),
-                            getColor().withOpacity(0.7)
-                          ],
+                          colors: [getColor(), getColor().withOpacity(0.7)],
                         ),
                       ),
                       child: Center(
@@ -240,7 +236,7 @@ class _Scene4ScreenState extends State<Scene4Screen> {
                               ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -252,66 +248,18 @@ class _Scene4ScreenState extends State<Scene4Screen> {
 
   /// 🔥 POPUP FEEDBACK
   void showFeedbackDialog() {
-    showDialog(
-      context: context,
-      builder: (_) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(24),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-
-                  /// CATEGORY
-                  Text(
-                    result!["category"],
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: getColor(),
-                    ),
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  /// IMPACT
-                  Text(
-                    result!["team_impact"],
-                    textAlign: TextAlign.center,
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  /// INSIGHT
-                  Text(
-                    result!["insight"],
-                    textAlign: TextAlign.center,
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      _goToMateri();
-                    },
-                    child: const Text("Lanjut"),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
+    if (result == null) return;
+    AIEvaluationSheet.show(
+      context,
+      title: "Evaluasi AI - Leadership Control",
+      subtitle: "Analisis Continuum Kepemimpinan",
+      leadershipType: result!["category"]?.toString(),
+      impactText: result!["team_impact"]?.toString(),
+      insightText: result!["insight"]?.toString(),
+      onContinue: () {
+        Navigator.pop(context);
+        _goToMateri();
+      },
     );
   }
 
@@ -321,10 +269,7 @@ class _Scene4ScreenState extends State<Scene4Screen> {
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const Scene5Screen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );
@@ -348,13 +293,19 @@ class _Scene4ScreenState extends State<Scene4Screen> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Leadership Control",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold, fontSize: 16)),
-            Text("Adjust your authority level",
-                style: GoogleFonts.poppins(fontSize: 12)),
+            Text(
+              "Leadership Control",
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              "Adjust your authority level",
+              style: GoogleFonts.poppins(fontSize: 12),
+            ),
           ],
-        )
+        ),
       ],
     );
   }

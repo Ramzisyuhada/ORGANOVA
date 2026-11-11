@@ -6,11 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 /// Menerima daftar path asset gambar (hasil konversi dari PDF),
 /// ditampilkan sebagai slide yang bisa di-swipe + tombol next/prev.
 class PptViewerScreen extends StatefulWidget {
-  const PptViewerScreen({
-    super.key,
-    required this.title,
-    required this.images,
-  });
+  const PptViewerScreen({super.key, required this.title, required this.images});
 
   final String title;
   final List<String> images;
@@ -52,10 +48,7 @@ class _PptViewerScreenState extends State<PptViewerScreen> {
             child: Center(
               child: Text(
                 '${_currentPage + 1} / $total',
-                style: GoogleFonts.poppins(
-                  fontSize: 13,
-                  color: Colors.black54,
-                ),
+                style: GoogleFonts.poppins(fontSize: 13, color: Colors.black54),
               ),
             ),
           ),

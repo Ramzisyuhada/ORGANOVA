@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:organova/core/widgets/organova_logo.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -19,7 +20,6 @@ class AboutScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-
           /// Background
           Container(
             decoration: const BoxDecoration(
@@ -41,7 +41,6 @@ class AboutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 /// Animation
                 Center(
                   child: SizedBox(
@@ -52,13 +51,9 @@ class AboutScreen extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                /// Title
-                Text(
-                  "LEXIMPACT AI",
-                  style: GoogleFonts.poppins(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                /// Title & Logo
+                const Center(
+                  child: OrganovaLogo(iconSize: 64, isHorizontal: false),
                 ),
 
                 const SizedBox(height: 10),
@@ -76,16 +71,14 @@ class AboutScreen extends StatelessWidget {
                 _section(
                   "Tujuan",
                   "Membantu pengguna memahami gaya kepemimpinan dan "
-                  "pengambilan keputusan dalam organisasi.",
+                      "pengambilan keputusan dalam organisasi.",
                 ),
 
                 _section(
                   "Teknologi",
                   "Menggunakan AI untuk menghasilkan studi kasus, "
-                  "simulasi respon organisasi, dan evaluasi keputusan.",
+                      "simulasi respon organisasi, dan evaluasi keputusan.",
                 ),
-
-               
 
                 const SizedBox(height: 30),
 
@@ -140,10 +133,7 @@ class AboutScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.white.withOpacity(0.3)),
           ),
-          child: Text(
-            text,
-            style: GoogleFonts.poppins(),
-          ),
+          child: Text(text, style: GoogleFonts.poppins()),
         ),
       ),
     );
@@ -156,12 +146,7 @@ class AboutScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text(title, style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
           const SizedBox(height: 6),
           _glassText(desc),
         ],
@@ -189,7 +174,6 @@ class AboutScreen extends StatelessWidget {
           ),
           child: Row(
             children: [
-
               /// Avatar
               CircleAvatar(
                 radius: 28,
@@ -206,9 +190,7 @@ class AboutScreen extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                     ),
                     Text(
                       role,
@@ -218,10 +200,7 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Text(
-                      desc,
-                      style: GoogleFonts.poppins(fontSize: 12),
-                    ),
+                    Text(desc, style: GoogleFonts.poppins(fontSize: 12)),
                     const SizedBox(height: 6),
                     Text(
                       email,
@@ -232,7 +211,7 @@ class AboutScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

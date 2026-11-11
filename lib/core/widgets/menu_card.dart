@@ -14,10 +14,7 @@ Widget buildMenuCard({
         borderRadius: BorderRadius.circular(28),
         color: color,
         boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.6),
-            offset: const Offset(0, 6),
-          ),
+          BoxShadow(color: color.withOpacity(0.6), offset: const Offset(0, 6)),
         ],
       ),
       child: Container(

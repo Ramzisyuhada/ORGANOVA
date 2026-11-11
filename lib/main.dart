@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:organova/feature/home_screen.dart';
 import 'package:organova/service/supabase_client.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SupabaseConfig.init();

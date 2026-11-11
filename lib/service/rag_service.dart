@@ -12,12 +12,9 @@ class RagService {
 
       /// 🔥 2. CALL RPC
       final response = await supabase.rpc(
-  'match_documents',
-  params: {
-    'match_count': 3,
-    'query_embedding': embedding,
-  },
-);
+        'match_documents',
+        params: {'match_count': 3, 'query_embedding': embedding},
+      );
 
       final data = response as List;
 

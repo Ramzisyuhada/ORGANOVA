@@ -18,307 +18,298 @@ class _QuizScreenState extends State<QuizScreen> {
   bool answered = false;
 
   final List<Map<String, dynamic>> questions = [
-  {
-    "question": "Kepemimpinan dalam organisasi pada dasarnya merupakan proses untuk...",
-    "options": [
-      "Mengontrol seluruh aktivitas organisasi",
-      "Mempengaruhi individu atau kelompok untuk mencapai tujuan",
-      "Menghukum anggota yang tidak disiplin",
-      "Mengawasi pekerjaan bawahan secara ketat"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Menurut Robbins dan Judge (2017), kepemimpinan adalah...",
-    "options": [
-      "Cara mengatur organisasi secara formal",
-      "Kemampuan mempengaruhi kelompok untuk mencapai visi atau tujuan",
-      "Sistem pengawasan karyawan",
-      "Proses evaluasi kinerja pegawai"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Leadership Continuum dikembangkan oleh...",
-    "options": [
-      "Robbins dan Judge",
-      "Peter Drucker",
-      "Robert Tannenbaum dan Warren H. Schmidt",
-      "Kurt Lewin"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Leadership Continuum pertama kali dipublikasikan pada tahun...",
-    "options": [
-      "1945",
-      "1958",
-      "1975",
-      "1989"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Konsep utama Leadership Continuum menyatakan bahwa gaya kepemimpinan berada pada spektrum antara...",
-    "options": [
-      "Demokratis dan transformasional",
-      "Otoriter dan demokratis",
-      "Karismatik dan birokratis",
-      "Transaksional dan visioner"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Pada spektrum Leadership Continuum gaya kepemimpinan yang memberi kontrol penuh kepada pemimpin disebut...",
-    "options": [
-      "Subordinate-centered leadership",
-      "Leader-centered leadership",
-      "Transformational leadership",
-      "Participative leadership"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Gaya kepemimpinan yang memberikan partisipasi besar kepada bawahan disebut...",
-    "options": [
-      "Leader-centered leadership",
-      "Subordinate-centered leadership",
-      "Directive leadership",
-      "Bureaucratic leadership"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Model pertama dalam Leadership Continuum adalah...",
-    "options": [
-      "Consult",
-      "Join",
-      "Tell",
-      "Delegate"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Pada model Tell pemimpin biasanya...",
-    "options": [
-      "Meminta saran dari tim",
-      "Menyerahkan keputusan kepada bawahan",
-      "Membuat keputusan sendiri dan mengumumkannya",
-      "Mengajak tim berdiskusi sebelum mengambil keputusan"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Karakteristik utama gaya kepemimpinan Tell adalah...",
-    "options": [
-      "Demokratis",
-      "Otoriter",
-      "Partisipatif",
-      "Transformasional"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Model kepemimpinan Sell berarti pemimpin...",
-    "options": [
-      "Menjual ide kepada investor",
-      "Membuat keputusan dan menjelaskan alasan kepada bawahan",
-      "Memberi keputusan kepada tim",
-      "Menyerahkan keputusan sepenuhnya kepada bawahan"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Tujuan pemimpin menggunakan gaya Sell adalah...",
-    "options": [
-      "Agar bawahan membuat keputusan",
-      "Agar bawahan menerima keputusan yang sudah dibuat",
-      "Agar bawahan mengganti keputusan",
-      "Agar pemimpin tidak bertanggung jawab"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Dalam model Suggest, pemimpin...",
-    "options": [
-      "Tidak menjelaskan keputusan",
-      "Menjelaskan keputusan dan membuka kesempatan bertanya",
-      "Menyerahkan keputusan kepada bawahan",
-      "Memberikan kebebasan penuh kepada tim"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Pada model Consult, pemimpin...",
-    "options": [
-      "Memberikan keputusan final tanpa diskusi",
-      "Menyerahkan semua keputusan kepada tim",
-      "Memberikan keputusan sementara dan meminta masukan tim",
-      "Menghindari pengambilan keputusan"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Model Join menunjukkan bahwa pemimpin...",
-    "options": [
-      "Mengambil keputusan sendiri",
-      "Menjelaskan masalah dan meminta saran dari tim",
-      "Tidak melibatkan tim",
-      "Mengontrol semua keputusan"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Dalam model Delegate, pemimpin...",
-    "options": [
-      "Menyerahkan keputusan sepenuhnya tanpa batasan",
-      "Menentukan batasan dan tim menentukan solusi",
-      "Mengambil keputusan tanpa diskusi",
-      "Tidak memiliki peran dalam tim"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Model Abdicate menggambarkan kondisi ketika...",
-    "options": [
-      "Pemimpin mengontrol penuh keputusan",
-      "Pemimpin memberikan kebebasan penuh kepada tim",
-      "Pemimpin memberikan arahan detail",
-      "Pemimpin menentukan semua kebijakan"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Dalam model Abdicate, peran pemimpin lebih sebagai...",
-    "options": [
-      "Pengontrol",
-      "Supervisor",
-      "Fasilitator",
-      "Direktur"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Salah satu fungsi utama kepemimpinan dalam organisasi adalah...",
-    "options": [
-      "Mengurangi jumlah karyawan",
-      "Menentukan arah organisasi",
-      "Menghapus struktur organisasi",
-      "Menghindari konflik"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Fungsi kepemimpinan yang berkaitan dengan menjaga semangat kerja anggota tim adalah...",
-    "options": [
-      "Koordinasi",
-      "Motivasi",
-      "Delegasi",
-      "Administrasi"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Faktor yang mempengaruhi gaya kepemimpinan dari sisi pemimpin adalah...",
-    "options": [
-      "Gaji karyawan",
-      "Nilai pribadi dan pengalaman pemimpin",
-      "Jumlah karyawan",
-      "Lokasi kantor"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Salah satu faktor dari struktural yang mempengaruhi gaya kepemimpinan adalah...",
-    "options": [
-      "Ukuran organisasi",
-      "Kompetensi bawahan",
-      "Sistem teknologi",
-      "Struktur organisasi"
-    ],
-    "answer": 3
-  },
-  {
-    "question": "Jika bawahan memiliki kompetensi tinggi, gaya kepemimpinan yang lebih sesuai adalah...",
-    "options": [
-      "Otoriter",
-      "Kontrol penuh pemimpin",
-      "Lebih partisipatif",
-      "Tidak ada kepemimpinan"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Faktor situasi yang mempengaruhi gaya kepemimpinan antara lain...",
-    "options": [
-      "Budaya organisasi",
-      "Hobi pemimpin",
-      "Warna logo perusahaan",
-      "Jenis kendaraan perusahaan"
-    ],
-    "answer": 0
-  },
-  {
-    "question": "Tekanan waktu dalam organisasi biasanya membuat pemimpin menggunakan gaya...",
-    "options": [
-      "Lebih demokratis",
-      "Lebih partisipatif",
-      "Lebih otoriter",
-      "Tidak mengambil keputusan"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Salah satu kelebihan Leadership Continuum adalah...",
-    "options": [
-      "Tidak membutuhkan analisis pemimpin",
-      "Fleksibel terhadap situasi organisasi",
-      "Menghilangkan peran bawahan",
-      "Menyederhanakan komunikasi dalam organisasi"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Pendekatan Leadership Continuum dianggap fleksibel karena...",
-    "options": [
-      "Gaya kepemimpinan dapat berubah sesuai situasi",
-      "Pemimpin selalu mengambil keputusan sendiri",
-      "Bawahan tidak terlibat dalam organisasi",
-      "Organisasi tidak memiliki aturan"
-    ],
-    "answer": 0
-  },
-  {
-    "question": "Salah satu kelemahan pendekatan Leadership Continuum adalah...",
-    "options": [
-      "Tidak memerlukan pemimpin",
-      "Proses keputusan dapat menjadi lebih lama",
-      "Tidak memerlukan komunikasi",
-      "Tidak membutuhkan analisis situasi"
-    ],
-    "answer": 1
-  },
-  {
-    "question": "Pemimpin yang efektif menurut teori Leadership Continuum adalah pemimpin yang...",
-    "options": [
-      "Selalu otoriter",
-      "Selalu demokratis",
-      "Mampu menyesuaikan gaya kepemimpinan dengan situasi",
-      "Tidak melibatkan tim"
-    ],
-    "answer": 2
-  },
-  {
-    "question": "Leadership Continuum menunjukkan bahwa kepemimpinan adalah...",
-    "options": [
-      "Sistem tetap yang tidak berubah",
-      "Spektrum gaya kepemimpinan yang fleksibel",
-      "Struktur organisasi formal",
-      "Sistem kontrol karyawan"
-    ],
-    "answer": 1
-  },
-];
+    {
+      "question":
+          "Kepemimpinan dalam organisasi pada dasarnya merupakan proses untuk...",
+      "options": [
+        "Mengontrol seluruh aktivitas organisasi",
+        "Mempengaruhi individu atau kelompok untuk mencapai tujuan",
+        "Menghukum anggota yang tidak disiplin",
+        "Mengawasi pekerjaan bawahan secara ketat",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Menurut Robbins dan Judge (2017), kepemimpinan adalah...",
+      "options": [
+        "Cara mengatur organisasi secara formal",
+        "Kemampuan mempengaruhi kelompok untuk mencapai visi atau tujuan",
+        "Sistem pengawasan karyawan",
+        "Proses evaluasi kinerja pegawai",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Leadership Continuum dikembangkan oleh...",
+      "options": [
+        "Robbins dan Judge",
+        "Peter Drucker",
+        "Robert Tannenbaum dan Warren H. Schmidt",
+        "Kurt Lewin",
+      ],
+      "answer": 2,
+    },
+    {
+      "question":
+          "Leadership Continuum pertama kali dipublikasikan pada tahun...",
+      "options": ["1945", "1958", "1975", "1989"],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Konsep utama Leadership Continuum menyatakan bahwa gaya kepemimpinan berada pada spektrum antara...",
+      "options": [
+        "Demokratis dan transformasional",
+        "Otoriter dan demokratis",
+        "Karismatik dan birokratis",
+        "Transaksional dan visioner",
+      ],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Pada spektrum Leadership Continuum gaya kepemimpinan yang memberi kontrol penuh kepada pemimpin disebut...",
+      "options": [
+        "Subordinate-centered leadership",
+        "Leader-centered leadership",
+        "Transformational leadership",
+        "Participative leadership",
+      ],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Gaya kepemimpinan yang memberikan partisipasi besar kepada bawahan disebut...",
+      "options": [
+        "Leader-centered leadership",
+        "Subordinate-centered leadership",
+        "Directive leadership",
+        "Bureaucratic leadership",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Model pertama dalam Leadership Continuum adalah...",
+      "options": ["Consult", "Join", "Tell", "Delegate"],
+      "answer": 2,
+    },
+    {
+      "question": "Pada model Tell pemimpin biasanya...",
+      "options": [
+        "Meminta saran dari tim",
+        "Menyerahkan keputusan kepada bawahan",
+        "Membuat keputusan sendiri dan mengumumkannya",
+        "Mengajak tim berdiskusi sebelum mengambil keputusan",
+      ],
+      "answer": 2,
+    },
+    {
+      "question": "Karakteristik utama gaya kepemimpinan Tell adalah...",
+      "options": ["Demokratis", "Otoriter", "Partisipatif", "Transformasional"],
+      "answer": 1,
+    },
+    {
+      "question": "Model kepemimpinan Sell berarti pemimpin...",
+      "options": [
+        "Menjual ide kepada investor",
+        "Membuat keputusan dan menjelaskan alasan kepada bawahan",
+        "Memberi keputusan kepada tim",
+        "Menyerahkan keputusan sepenuhnya kepada bawahan",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Tujuan pemimpin menggunakan gaya Sell adalah...",
+      "options": [
+        "Agar bawahan membuat keputusan",
+        "Agar bawahan menerima keputusan yang sudah dibuat",
+        "Agar bawahan mengganti keputusan",
+        "Agar pemimpin tidak bertanggung jawab",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Dalam model Suggest, pemimpin...",
+      "options": [
+        "Tidak menjelaskan keputusan",
+        "Menjelaskan keputusan dan membuka kesempatan bertanya",
+        "Menyerahkan keputusan kepada bawahan",
+        "Memberikan kebebasan penuh kepada tim",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Pada model Consult, pemimpin...",
+      "options": [
+        "Memberikan keputusan final tanpa diskusi",
+        "Menyerahkan semua keputusan kepada tim",
+        "Memberikan keputusan sementara dan meminta masukan tim",
+        "Menghindari pengambilan keputusan",
+      ],
+      "answer": 2,
+    },
+    {
+      "question": "Model Join menunjukkan bahwa pemimpin...",
+      "options": [
+        "Mengambil keputusan sendiri",
+        "Menjelaskan masalah dan meminta saran dari tim",
+        "Tidak melibatkan tim",
+        "Mengontrol semua keputusan",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Dalam model Delegate, pemimpin...",
+      "options": [
+        "Menyerahkan keputusan sepenuhnya tanpa batasan",
+        "Menentukan batasan dan tim menentukan solusi",
+        "Mengambil keputusan tanpa diskusi",
+        "Tidak memiliki peran dalam tim",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Model Abdicate menggambarkan kondisi ketika...",
+      "options": [
+        "Pemimpin mengontrol penuh keputusan",
+        "Pemimpin memberikan kebebasan penuh kepada tim",
+        "Pemimpin memberikan arahan detail",
+        "Pemimpin menentukan semua kebijakan",
+      ],
+      "answer": 1,
+    },
+    {
+      "question": "Dalam model Abdicate, peran pemimpin lebih sebagai...",
+      "options": ["Pengontrol", "Supervisor", "Fasilitator", "Direktur"],
+      "answer": 2,
+    },
+    {
+      "question":
+          "Salah satu fungsi utama kepemimpinan dalam organisasi adalah...",
+      "options": [
+        "Mengurangi jumlah karyawan",
+        "Menentukan arah organisasi",
+        "Menghapus struktur organisasi",
+        "Menghindari konflik",
+      ],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Fungsi kepemimpinan yang berkaitan dengan menjaga semangat kerja anggota tim adalah...",
+      "options": ["Koordinasi", "Motivasi", "Delegasi", "Administrasi"],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Faktor yang mempengaruhi gaya kepemimpinan dari sisi pemimpin adalah...",
+      "options": [
+        "Gaji karyawan",
+        "Nilai pribadi dan pengalaman pemimpin",
+        "Jumlah karyawan",
+        "Lokasi kantor",
+      ],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Salah satu faktor dari struktural yang mempengaruhi gaya kepemimpinan adalah...",
+      "options": [
+        "Ukuran organisasi",
+        "Kompetensi bawahan",
+        "Sistem teknologi",
+        "Struktur organisasi",
+      ],
+      "answer": 3,
+    },
+    {
+      "question":
+          "Jika bawahan memiliki kompetensi tinggi, gaya kepemimpinan yang lebih sesuai adalah...",
+      "options": [
+        "Otoriter",
+        "Kontrol penuh pemimpin",
+        "Lebih partisipatif",
+        "Tidak ada kepemimpinan",
+      ],
+      "answer": 2,
+    },
+    {
+      "question":
+          "Faktor situasi yang mempengaruhi gaya kepemimpinan antara lain...",
+      "options": [
+        "Budaya organisasi",
+        "Hobi pemimpin",
+        "Warna logo perusahaan",
+        "Jenis kendaraan perusahaan",
+      ],
+      "answer": 0,
+    },
+    {
+      "question":
+          "Tekanan waktu dalam organisasi biasanya membuat pemimpin menggunakan gaya...",
+      "options": [
+        "Lebih demokratis",
+        "Lebih partisipatif",
+        "Lebih otoriter",
+        "Tidak mengambil keputusan",
+      ],
+      "answer": 2,
+    },
+    {
+      "question": "Salah satu kelebihan Leadership Continuum adalah...",
+      "options": [
+        "Tidak membutuhkan analisis pemimpin",
+        "Fleksibel terhadap situasi organisasi",
+        "Menghilangkan peran bawahan",
+        "Menyederhanakan komunikasi dalam organisasi",
+      ],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Pendekatan Leadership Continuum dianggap fleksibel karena...",
+      "options": [
+        "Gaya kepemimpinan dapat berubah sesuai situasi",
+        "Pemimpin selalu mengambil keputusan sendiri",
+        "Bawahan tidak terlibat dalam organisasi",
+        "Organisasi tidak memiliki aturan",
+      ],
+      "answer": 0,
+    },
+    {
+      "question":
+          "Salah satu kelemahan pendekatan Leadership Continuum adalah...",
+      "options": [
+        "Tidak memerlukan pemimpin",
+        "Proses keputusan dapat menjadi lebih lama",
+        "Tidak memerlukan komunikasi",
+        "Tidak membutuhkan analisis situasi",
+      ],
+      "answer": 1,
+    },
+    {
+      "question":
+          "Pemimpin yang efektif menurut teori Leadership Continuum adalah pemimpin yang...",
+      "options": [
+        "Selalu otoriter",
+        "Selalu demokratis",
+        "Mampu menyesuaikan gaya kepemimpinan dengan situasi",
+        "Tidak melibatkan tim",
+      ],
+      "answer": 2,
+    },
+    {
+      "question":
+          "Leadership Continuum menunjukkan bahwa kepemimpinan adalah...",
+      "options": [
+        "Sistem tetap yang tidak berubah",
+        "Spektrum gaya kepemimpinan yang fleksibel",
+        "Struktur organisasi formal",
+        "Sistem kontrol karyawan",
+      ],
+      "answer": 1,
+    },
+  ];
 
   /// 🎯 HITUNG NILAI
   int get nilai => ((score / questions.length) * 100).round();
@@ -367,10 +358,8 @@ class _QuizScreenState extends State<QuizScreen> {
   void showResult() {
     showDialog(
       context: context,
-      builder: (_) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: _resultCard(),
-      ),
+      builder: (_) =>
+          Dialog(backgroundColor: Colors.transparent, child: _resultCard()),
     );
   }
 
@@ -388,7 +377,6 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
       body: Stack(
         children: [
-
           /// BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -408,14 +396,10 @@ class _QuizScreenState extends State<QuizScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 /// PROGRESS
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: LinearProgressIndicator(
-                    value: progress,
-                    minHeight: 8,
-                  ),
+                  child: LinearProgressIndicator(value: progress, minHeight: 8),
                 ),
 
                 const SizedBox(height: 10),
@@ -435,9 +419,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 _glass(
                   child: Text(
                     current["question"],
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
                   ),
                 ).animate().fadeIn().slideY(begin: 0.2),
 
@@ -480,10 +462,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   /// OPTION CARD
-  Widget _optionCard({
-    required String text,
-    required int indexOption,
-  }) {
+  Widget _optionCard({required String text, required int indexOption}) {
     final correctIndex = questions[index]["answer"];
 
     bool isCorrect = indexOption == correctIndex;
@@ -520,10 +499,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: border, width: 2),
               ),
-              child: Text(
-                text,
-                style: GoogleFonts.poppins(),
-              ),
+              child: Text(text, style: GoogleFonts.poppins()),
             ),
           ),
         ),
@@ -546,7 +522,6 @@ class _QuizScreenState extends State<QuizScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-
               Text(
                 "Hasil Kuis",
                 style: GoogleFonts.poppins(
@@ -568,12 +543,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
               const SizedBox(height: 6),
 
-              Text(
-                kategori,
-                style: GoogleFonts.poppins(
-                  color: Colors.black54,
-                ),
-              ),
+              Text(kategori, style: GoogleFonts.poppins(color: Colors.black54)),
 
               const SizedBox(height: 20),
 
@@ -588,7 +558,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   });
                 },
                 child: const Text("Ulangi"),
-              )
+              ),
             ],
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:organova/core/widgets/ai_evaluation_sheet.dart';
 import 'package:organova/feature/scene6_screen.dart';
 import 'package:organova/service/simulation_ai_service.dart';
 import 'package:organova/statet/simulation_state.dart';
@@ -34,7 +35,7 @@ class _Scene5ScreenState extends State<Scene5Screen> {
     "Telling (M1)",
     "Selling (M2)",
     "Participating (M3)",
-    "Delegating (M4)"
+    "Delegating (M4)",
   ];
 
   Map<String, dynamic>? result;
@@ -78,12 +79,20 @@ class _Scene5ScreenState extends State<Scene5Screen> {
   }
 
   void showResult() {
-    showDialog(
-      context: context,
-      builder: (_) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: _resultCard(),
-      ),
+    if (result == null) return;
+    AIEvaluationSheet.show(
+      context,
+      title: "Evaluasi AI - Readiness Analysis",
+      subtitle: "Penilaian kecocokan gaya kepemimpinan tim",
+      evaluationText: result!["evaluation"]?.toString(),
+      mistakes: result!["mistakes"] is List ? result!["mistakes"] : null,
+      recommendations: result!["recommendations"] is List
+          ? result!["recommendations"]
+          : null,
+      onContinue: () {
+        Navigator.pop(context);
+        _goToMateri();
+      },
     );
   }
 
@@ -92,7 +101,6 @@ class _Scene5ScreenState extends State<Scene5Screen> {
     return Scaffold(
       body: Stack(
         children: [
-
           /// BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -112,7 +120,6 @@ class _Scene5ScreenState extends State<Scene5Screen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   LinearProgressIndicator(
                     value: 0.7,
                     color: const Color(0xFF4A6CF7),
@@ -136,7 +143,6 @@ class _Scene5ScreenState extends State<Scene5Screen> {
                   /// BUTTON
                   GestureDetector(
                     onTap: () async {
-
                       /// VALIDASI
                       if (choices.length < 3) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -162,14 +168,18 @@ class _Scene5ScreenState extends State<Scene5Screen> {
                       child: Center(
                         child: isLoading
                             ? const CircularProgressIndicator(
-                                color: Colors.white)
-                            : const Text("Analisis AI",
+                                color: Colors.white,
+                              )
+                            : const Text(
+                                "Analisis AI",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -189,10 +199,13 @@ class _Scene5ScreenState extends State<Scene5Screen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Text(name,
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(
+              name,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
 
             const SizedBox(height: 8),
 
@@ -215,7 +228,9 @@ class _Scene5ScreenState extends State<Scene5Screen> {
                   onTap: () => selectStyle(name, s),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 6),
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: selected
                           ? Colors.blue.withOpacity(0.2)
@@ -231,7 +246,7 @@ class _Scene5ScreenState extends State<Scene5Screen> {
                   ),
                 );
               }).toList(),
-            )
+            ),
           ],
         ),
       ),
@@ -253,32 +268,38 @@ class _Scene5ScreenState extends State<Scene5Screen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-
-              Text("Evaluasi AI",
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold, fontSize: 18)),
-
-              const SizedBox(height: 10),
-
-              Text(result!["evaluation"],
-                  textAlign: TextAlign.center),
+              Text(
+                "Evaluasi AI",
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
 
               const SizedBox(height: 10),
 
-              Text("Kesalahan:\n• ${result!["mistakes"].join("\n• ")}",
-                  textAlign: TextAlign.center),
+              Text(result!["evaluation"], textAlign: TextAlign.center),
 
               const SizedBox(height: 10),
 
-              Text("Rekomendasi:\n• ${result!["recommendations"].join("\n• ")}",
-                  textAlign: TextAlign.center),
+              Text(
+                "Kesalahan:\n• ${result!["mistakes"].join("\n• ")}",
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 10),
+
+              Text(
+                "Rekomendasi:\n• ${result!["recommendations"].join("\n• ")}",
+                textAlign: TextAlign.center,
+              ),
 
               const SizedBox(height: 20),
 
               ElevatedButton(
                 onPressed: _goToMateri,
                 child: const Text("Lanjut"),
-              )
+              ),
             ],
           ),
         ),
@@ -319,9 +340,10 @@ class _Scene5ScreenState extends State<Scene5Screen> {
       children: [
         const Icon(Icons.groups, color: Colors.blue),
         const SizedBox(width: 10),
-        Text("Team Readiness Analysis",
-            style: GoogleFonts.poppins(
-                fontWeight: FontWeight.bold, fontSize: 16)),
+        Text(
+          "Team Readiness Analysis",
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
       ],
     );
   }

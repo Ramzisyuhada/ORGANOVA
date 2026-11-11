@@ -39,7 +39,8 @@ class _Scene7ScreenState extends State<Scene7Screen> {
 
   Future<void> loadDashboard() async {
     try {
-      final summary = """
+      final summary =
+          """
 Organisasi: ${state.orgName}
 Budaya: ${state.orgData["Budaya"]}
 Motivasi: ${state.orgData["Motivasi Tim"]}
@@ -58,7 +59,6 @@ Crisis: ${state.crisisResult}
         result = decoded;
         isLoading = false;
       });
-
     } catch (e) {
       debugPrint("Dashboard AI error: $e");
       setState(() => isLoading = false);
@@ -70,7 +70,6 @@ Crisis: ${state.crisisResult}
     return Scaffold(
       body: Stack(
         children: [
-
           /// BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -92,7 +91,6 @@ Crisis: ${state.crisisResult}
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         _header(),
 
                         const SizedBox(height: 20),
@@ -106,17 +104,29 @@ Crisis: ${state.crisisResult}
 
                         /// 🔥 METRICS AI
                         _metricCard(
-                            "Team Trust", result?["team_trust"] ?? 0, Colors.blue),
+                          "Team Trust",
+                          result?["team_trust"] ?? 0,
+                          Colors.blue,
+                        ),
                         _metricCard(
-                            "Productivity", result?["productivity"] ?? 0, Colors.green),
+                          "Productivity",
+                          result?["productivity"] ?? 0,
+                          Colors.green,
+                        ),
 
                         const SizedBox(height: 10),
 
-                        _statusCard("Resistance Level",
-                            result?["resistance"] ?? "-", Colors.orange),
+                        _statusCard(
+                          "Resistance Level",
+                          result?["resistance"] ?? "-",
+                          Colors.orange,
+                        ),
 
-                        _statusCard("Leadership Fit",
-                            result?["leadership_fit"] ?? "-", Colors.purple),
+                        _statusCard(
+                          "Leadership Fit",
+                          result?["leadership_fit"] ?? "-",
+                          Colors.purple,
+                        ),
 
                         const Spacer(),
 
@@ -128,10 +138,7 @@ Crisis: ${state.crisisResult}
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               gradient: const LinearGradient(
-                                colors: [
-                                  Color(0xFF10B981),
-                                  Color(0xFF34D399),
-                                ],
+                                colors: [Color(0xFF10B981), Color(0xFF34D399)],
                               ),
                             ),
                             child: const Center(
@@ -144,7 +151,7 @@ Crisis: ${state.crisisResult}
                               ),
                             ),
                           ),
-                        ).animate().fadeIn().scale()
+                        ).animate().fadeIn().scale(),
                       ],
                     ),
             ),
@@ -161,10 +168,7 @@ Crisis: ${state.crisisResult}
         const SizedBox(width: 10),
         Text(
           "Performance Dashboard",
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ],
     );
@@ -177,8 +181,10 @@ Crisis: ${state.crisisResult}
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title,
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
+            Text(
+              title,
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+            ),
             const SizedBox(height: 8),
             LinearProgressIndicator(
               value: value / 100,
@@ -186,8 +192,10 @@ Crisis: ${state.crisisResult}
               backgroundColor: Colors.grey.shade200,
             ),
             const SizedBox(height: 6),
-            Text("$value%",
-                style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
+            Text(
+              "$value%",
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
@@ -201,8 +209,10 @@ Crisis: ${state.crisisResult}
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title,
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
+            Text(
+              title,
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
@@ -211,12 +221,9 @@ Crisis: ${state.crisisResult}
               ),
               child: Text(
                 value,
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(color: color, fontWeight: FontWeight.bold),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -246,10 +253,7 @@ Crisis: ${state.crisisResult}
         transitionDuration: const Duration(milliseconds: 500),
         pageBuilder: (_, __, ___) => const Scene8Screen(),
         transitionsBuilder: (_, animation, __, child) {
-          return FadeScaleTransition(
-            animation: animation,
-            child: child,
-          );
+          return FadeScaleTransition(animation: animation, child: child);
         },
       ),
     );

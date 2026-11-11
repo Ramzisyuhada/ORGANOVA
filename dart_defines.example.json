@@ -1,0 +1,5 @@
+{
+  "MISTRAL_API_KEY": "<isi mistral_api_key>",
+  "SUPABASE_URL": "<isi supabase_url>",
+  "SUPABASE_ANON_KEY": "<isi supabase_anon_key>"
+}

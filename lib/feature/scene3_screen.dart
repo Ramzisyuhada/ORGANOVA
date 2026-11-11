@@ -4,6 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:organova/core/widgets/ai_evaluation_sheet.dart';
 import 'package:organova/feature/scene4_screen.dart';
 import 'package:organova/service/simulation_ai_service.dart';
 import 'package:organova/statet/simulation_state.dart';
@@ -12,11 +13,7 @@ class Scene3Screen extends StatefulWidget {
   final Map<String, String> orgData;
   final String orgName;
 
-  const Scene3Screen({
-    super.key,
-    required this.orgData,
-    required this.orgName,
-  });
+  const Scene3Screen({super.key, required this.orgData, required this.orgName});
 
   @override
   State<Scene3Screen> createState() => _Scene3ScreenState();
@@ -34,21 +31,15 @@ class _Scene3ScreenState extends State<Scene3Screen> {
   final String situation =
       "Tim mengalami konflik dan penurunan performa. "
       "Sebagai manager, Anda harus menentukan pendekatan awal.";
-final List<String> options = [
-  "Ikuti prosedur yang sudah ditentukan.",
-  "Saya akan mendengar masukan Anda.",
-  "Mari kita diskusikan solusi bersama."
-];
-
+  final List<String> options = [
+    "Ikuti prosedur yang sudah ditentukan.",
+    "Saya akan mendengar masukan Anda.",
+    "Mari kita diskusikan solusi bersama.",
+  ];
 
   String cleanJson(String text) {
-  return text
-      .replaceAll("```json", "")
-      .replaceAll("```", "")
-      .trim();
-}
-
-
+    return text.replaceAll("```json", "").replaceAll("```", "").trim();
+  }
 
   /// 🔥 SELECT
   void selectOption(int i) async {
@@ -59,17 +50,15 @@ final List<String> options = [
       isLoading = true;
     });
     final state = SimulationState();
-      final res = await ai.analyzeLikert(
+    final res = await ai.analyzeLikert(
       userChoice: options[i],
       orgData: widget.orgData,
     );
 
     setState(() {
-      
       result = jsonDecode(cleanJson(res));
       answered = true;
       isLoading = false;
-      
     });
     state.leadershipChoice = options[i];
     state.leadershipType = result?["type"];
@@ -79,12 +68,19 @@ final List<String> options = [
   }
 
   void showResult() {
-    showDialog(
-      context: context,
-      builder: (_) => Dialog(
-        backgroundColor: Colors.transparent,
-        child: _resultCard(),
-      ),
+    if (result == null) return;
+    AIEvaluationSheet.show(
+      context,
+      title: "Evaluasi AI - Leadership Diagnosis",
+      subtitle: "Diagnosis Gaya Kepemimpinan Likert",
+      leadershipType: result!["type"]?.toString(),
+      evaluationText: result!["analysis"]?.toString(),
+      impactText: result!["impact"]?.toString(),
+      insightText: result!["feedback"]?.toString(),
+      onContinue: () {
+        Navigator.pop(context);
+        _goToMateri();
+      },
     );
   }
 
@@ -93,7 +89,6 @@ final List<String> options = [
     return Scaffold(
       body: Stack(
         children: [
-
           /// BACKGROUND
           Container(
             decoration: const BoxDecoration(
@@ -113,7 +108,6 @@ final List<String> options = [
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   LinearProgressIndicator(
                     value: 0.35,
                     color: const Color(0xFF4A6CF7),
@@ -125,9 +119,7 @@ final List<String> options = [
 
                   const SizedBox(height: 20),
 
-                  _glass(
-                    child: Text(situation),
-                  ),
+                  _glass(child: Text(situation)),
 
                   const SizedBox(height: 20),
 
@@ -135,10 +127,7 @@ final List<String> options = [
                   ...List.generate(options.length, (i) {
                     return GestureDetector(
                       onTap: () => selectOption(i),
-                      child: _optionCard(
-                        text: options[i],
-                        indexOption: i,
-                      ),
+                      child: _optionCard(text: options[i], indexOption: i),
                     );
                   }),
 
@@ -177,7 +166,6 @@ final List<String> options = [
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-
               /// TYPE
               Text(
                 result!["type"],
@@ -209,7 +197,7 @@ final List<String> options = [
               ElevatedButton(
                 onPressed: _goToMateri,
                 child: const Text("Lanjut"),
-              )
+              ),
             ],
           ),
         ),
@@ -218,79 +206,75 @@ final List<String> options = [
   }
 
   Widget _header() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(
-        children: [
-          const Icon(Icons.psychology, color: Colors.blue),
-          const SizedBox(width: 10),
-          Text("Leadership Diagnosis",
-              style: GoogleFonts.poppins(fontWeight: FontWeight.bold)),
-        ],
-      ),
-      const SizedBox(height: 6),
-
-      /// 🔥 NAMA ORGANISASI
-      Text(
-        widget.orgName,
-        style: GoogleFonts.poppins(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ],
-  );
-}
-
- Widget _optionCard({
-  required String text,
-  required int indexOption,
-}) {
-  final labels = ["A", "B", "C"];
-  bool isSelected = indexOption == selected;
-
-  return GestureDetector(
-    onTap: () => selectOption(indexOption),
-    child: Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      child: _glass(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-
-            /// 🔥 LABEL A/B/C
-            Container(
-              width: 28,
-              height: 28,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: isSelected ? Colors.blue : Colors.grey.shade300,
-                shape: BoxShape.circle,
-              ),
-              child: Text(
-                labels[indexOption],
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-
+            const Icon(Icons.psychology, color: Colors.blue),
             const SizedBox(width: 10),
-
-            Expanded(
-              child: Text(
-                text,
-                style: GoogleFonts.poppins(
-                  fontWeight:
-                      isSelected ? FontWeight.w600 : FontWeight.normal,
-                ),
-              ),
+            Text(
+              "Leadership Diagnosis",
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
           ],
         ),
+        const SizedBox(height: 6),
+
+        /// 🔥 NAMA ORGANISASI
+        Text(
+          widget.orgName,
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+      ],
+    );
+  }
+
+  Widget _optionCard({required String text, required int indexOption}) {
+    final labels = ["A", "B", "C"];
+    bool isSelected = indexOption == selected;
+
+    return GestureDetector(
+      onTap: () => selectOption(indexOption),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 14),
+        child: _glass(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// 🔥 LABEL A/B/C
+              Container(
+                width: 28,
+                height: 28,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: isSelected ? Colors.blue : Colors.grey.shade300,
+                  shape: BoxShape.circle,
+                ),
+                child: Text(
+                  labels[indexOption],
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+
+              const SizedBox(width: 10),
+
+              Expanded(
+                child: Text(
+                  text,
+                  style: GoogleFonts.poppins(
+                    fontWeight: isSelected
+                        ? FontWeight.w600
+                        : FontWeight.normal,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _glass({required Widget child}) {
     return Container(
