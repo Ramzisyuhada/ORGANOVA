@@ -4,7 +4,7 @@ Simulasi kepemimpinan dan pengambilan keputusan organisasi berbasis AI (Flutter)
 
 ## Konfigurasi kunci API
 
-Kunci Mistral AI dan Supabase tidak disimpan di kode. Aplikasi membacanya saat
+Kunci AI dan Supabase tidak disimpan di kode. Aplikasi membacanya saat
 build melalui `--dart-define-from-file`.
 
 1. Salin `dart_defines.example.json` menjadi `dart_defines.json`.
@@ -33,7 +33,7 @@ flutter build apk --release --dart-define-from-file=dart_defines.json
 ```
 
 Tanpa file tersebut, aplikasi gagal terhubung ke Supabase saat dibuka dan
-simulasi menampilkan pesan bahwa `MISTRAL_API_KEY` kosong.
+simulasi menampilkan pesan bahwa `AI_API_KEY` kosong.
 
 ## Catatan
 
