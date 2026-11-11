@@ -1,7 +1,7 @@
 {
-  "AI_BASE_URL": "https://router.requesty.ai/v1",
-  "AI_API_KEY": "<isi kunci requesty>",
-  "AI_MODEL": "google/gemma-4-31b-it",
+  "AI_BASE_URL": "https://openrouter.ai/api/v1",
+  "AI_API_KEY": "<isi kunci openrouter>",
+  "AI_MODEL": "nvidia/nemotron-3-ultra-550b-a55b:free",
   "AI_EMBED_MODEL": "mistral/mistral-embed",
   "SUPABASE_URL": "<isi supabase_url>",
   "SUPABASE_ANON_KEY": "<isi supabase_anon_key>"
