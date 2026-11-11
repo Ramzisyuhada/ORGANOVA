@@ -146,6 +146,11 @@ OUTPUT JSON:
 }
 
 ATURAN:
+- WAJIB menggunakan Bahasa Indonesia untuk semua value (jangan bahasa Inggris)
+- category HARUS salah satu dari (teori Leadership Continuum Tannenbaum & Schmidt):
+  Otoriter (Tell) / Persuasif (Sell) / Konsultatif (Consult) / Partisipatif (Join) / Delegatif (Delegate)
+- Control Level adalah posisi slider di aplikasi: 0 = pemimpin sangat otoriter, 100 = tim sangat bebas
+  (label aplikasi: di bawah 30 Terlalu Otoriter, 30-70 Seimbang, di atas 70 Terlalu Bebas)
 - Semua value HARUS 1 baris (tidak boleh enter)
 - Maksimal 20 kata per field
 """;
